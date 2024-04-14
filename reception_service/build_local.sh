@@ -15,3 +15,4 @@ source /workspaces/reception_service/venv/bin/activate
 echo "Installing requirements"
 pip install --upgrade pip
 pip install -r requirements.txt
+pip install -r requirements.dev.txt
