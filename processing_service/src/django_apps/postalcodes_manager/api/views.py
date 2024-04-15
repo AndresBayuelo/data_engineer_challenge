@@ -1,3 +1,4 @@
+import os
 import logging
 import requests
 from datetime import datetime
@@ -12,6 +13,7 @@ from src.domain.postalcodes_manager.constants import \
     CoordinateProcessStatus as ProcessStatus
 
 logger = logging.getLogger(__name__)
+daily_requests = os.environ.get('DAILY_REQUESTS')
 
 
 # Create your views here.
@@ -33,7 +35,7 @@ class FileProccessView(APIView):
             requests_today = RequestApi.objects.filter(
                 created_at__range=(today_min, today_max)
             ).count()
-            if requests_today >= 20:
+            if requests_today >= daily_requests:
                 logger.error(
                     'Se ha alcanzado el límite de 20 peticiones diarias.'
                 )
