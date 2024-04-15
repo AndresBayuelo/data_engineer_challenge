@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_spectacular",
+    "src.django_apps.coordinates_manager",
 ]
 
 MIDDLEWARE = [
