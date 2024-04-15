@@ -1,5 +1,5 @@
 from django.db import models
-from src.domain.postalcodes_manager.constants import \
+from src.domain.coordinates_manager.constants import \
     FileStatus, CoordinateProcessStatus
 
 
@@ -26,7 +26,9 @@ class Coordinate(models.Model):
     postal_code = models.CharField(max_length=10, null=True)
     process_status = models.CharField(
         max_length=50,
-        choices=[(status.value, status.value) for status in CoordinateProcessStatus],
+        choices=[
+            (status.value, status.value) for status in CoordinateProcessStatus
+        ],
         default=CoordinateProcessStatus.PENDING.value,
     )
     file = models.ForeignKey(File, on_delete=models.CASCADE)
