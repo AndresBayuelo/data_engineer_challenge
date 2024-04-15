@@ -1,5 +1,6 @@
 from django.db import models
-from src.domain.coordinates_manager.constants import FileStatus
+from src.domain.postalcodes_manager.constants import \
+    FileStatus, CoordinateProcessStatus
 
 
 # Create your models here.
@@ -23,6 +24,11 @@ class Coordinate(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     postal_code = models.CharField(max_length=10, null=True)
+    process_status = models.CharField(
+        max_length=50,
+        choices=[(status.value, status.value) for status in CoordinateProcessStatus],
+        default=CoordinateProcessStatus.PENDING.value,
+    )
     file = models.ForeignKey(File, on_delete=models.CASCADE)
 
     class Meta:
