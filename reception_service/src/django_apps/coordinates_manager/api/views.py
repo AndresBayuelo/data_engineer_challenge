@@ -61,10 +61,6 @@ class FileUploadView(APIView):
                 & (df["lon"] <= 180)
             ]
 
-            # Ahora puedes manejar los datos del CSV con pandas
-            # Por ejemplo, imprimir las primeras 5 filas del DataFrame
-            print(df.head())
-
             file = File.objects.create(name=csv_file.name)
 
             coordinates = [
