@@ -11,7 +11,7 @@ services:
       - DB_NAME=postalcodes_db
       - DB_USER=postalcodes_user
       - DB_PASS=postalcodes_password
-      - URL_FILE_PROCESS=processing_service/api/postalcodes-manager/file-proccess
+      - URL_FILE_PROCESS=http://processing_service:8000/api/postalcodes-manager/file-proccess
     depends_on:
       - db
 
