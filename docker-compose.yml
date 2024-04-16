@@ -27,7 +27,7 @@ services:
       - DB_NAME=postalcodes_db
       - DB_USER=postalcodes_user
       - DB_PASS=postalcodes_password
-      - DAILY_REQUESTS=100
+      - DAILY_REQUESTS=20
     depends_on:
       - reception_service
 
