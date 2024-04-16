@@ -13,7 +13,7 @@ from src.domain.postalcodes_manager.constants import \
     CoordinateProcessStatus as ProcessStatus
 
 logger = logging.getLogger(__name__)
-daily_requests = os.environ.get('DAILY_REQUESTS')
+daily_requests = int(os.environ.get('DAILY_REQUESTS'))
 
 
 # Create your views here.
