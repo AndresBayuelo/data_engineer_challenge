@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "ec0984e0-e413-41e3-acdd-5d9972764313",
+		"name": "data-engineer-challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13715751"
+	},
+	"item": [
+		{
+			"name": "reception-service",
+			"item": [
+				{
+					"name": "upload-csv",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/rkdeckard/Downloads/coordenates_.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/coordinates-manager/upload-csv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"coordinates-manager",
+								"upload-csv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "file-detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/coordinates-manager/file-detail?file_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"coordinates-manager",
+								"file-detail"
+							],
+							"query": [
+								{
+									"key": "file_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "processing_service",
+			"item": [
+				{
+					"name": "file-proccess",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8001/api/postalcodes-manager/file-proccess/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"postalcodes-manager",
+								"file-proccess",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
