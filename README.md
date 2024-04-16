@@ -2,7 +2,7 @@
 
 ## Arquitectura
 
-
+![Arquitectura](assets/architecture.drawio.png)
 
 ## Despliegue
 
