@@ -1,5 +1,5 @@
 services:
-  reception_service:
+  reception-service:
     build: ./reception_service
     volumes:
       - ./reception_service:/code
@@ -11,11 +11,11 @@ services:
       - DB_NAME=postalcodes_db
       - DB_USER=postalcodes_user
       - DB_PASS=postalcodes_password
-      - URL_FILE_PROCESS=http://processing_service:8000/api/postalcodes-manager/file-proccess
+      - URL_FILE_PROCESS=http://processing-service:8000/api/postalcodes-manager/file-proccess
     depends_on:
       - db
 
-  processing_service:
+  processing-service:
     build: ./processing_service
     volumes:
       - ./processing_service:/code
@@ -29,7 +29,7 @@ services:
       - DB_PASS=postalcodes_password
       - DAILY_REQUESTS=20
     depends_on:
-      - reception_service
+      - reception-service
 
   db:
     image: postgres
