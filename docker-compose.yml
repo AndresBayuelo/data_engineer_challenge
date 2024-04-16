@@ -1,0 +1,46 @@
+services:
+  reception_service:
+    build: ./reception_service
+    volumes:
+      - ./reception_service:/code
+    ports:
+      - 8000:8000
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=postalcodes_db
+      - DB_USER=postalcodes_user
+      - DB_PASS=postalcodes_password
+      - URL_FILE_PROCESS=processing_service/api/postalcodes-manager/file-proccess
+    depends_on:
+      - db
+
+  processing_service:
+    build: ./processing_service
+    volumes:
+      - ./processing_service:/code
+    ports:
+      - 8001:8000
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=postalcodes_db
+      - DB_USER=postalcodes_user
+      - DB_PASS=postalcodes_password
+      - DAILY_REQUESTS=100
+    depends_on:
+      - reception_service
+
+  db:
+    image: postgres
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postalcodes_user
+      POSTGRES_DB: postalcodes_db
+      POSTGRES_PASSWORD: postalcodes_password
+
+volumes:
+  dbdata:
