@@ -21,6 +21,7 @@ services:
       - DB_NAME=postalcodes_db
       - DB_USER=postalcodes_user
       - DB_PASS=postalcodes_password
+      - URL_FILE_PROCESS=https://webhook.site/8fe4be85-91db-4eea-8f5a-4507abd1f080
     depends_on:
       - db
 

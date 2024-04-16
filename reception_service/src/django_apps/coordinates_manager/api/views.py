@@ -1,4 +1,7 @@
 import io
+import os
+import requests
+import threading
 
 import pandas as pd
 from django.db import models
@@ -16,6 +19,9 @@ from src.django_apps.coordinates_manager.models import Coordinate, File
 class FileUploadView(APIView):
     parser_class = (FileUploadParser,)
     serializer_class = CSVUploadSerializer
+
+    def _async_get(self, url):
+        requests.get(url)
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
@@ -71,6 +77,16 @@ class FileUploadView(APIView):
             ]
 
             Coordinate.objects.bulk_create(coordinates)
+
+            url = os.environ.get('URL_FILE_PROCESS')
+            if url is not None:
+                url += f"/{file.id}"
+                threading.Thread(
+                    target=self._async_get,
+                    args=(
+                        url,
+                    )
+                ).start()
 
             return Response({
                 "status": "OK",
